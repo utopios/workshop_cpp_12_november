@@ -24,6 +24,9 @@ struct Visitor
     {
         std::cout << "Reading JSON file \"" + file.name + "\"\n";
     }
+    void operator()(...) {
+        
+    }
 };
 
 int main()
