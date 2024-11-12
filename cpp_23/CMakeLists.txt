@@ -3,4 +3,4 @@ project(cpp_23)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(cpp_23 main.cpp)
+add_executable(cpp_23 exercise_w_4_2.cpp)
