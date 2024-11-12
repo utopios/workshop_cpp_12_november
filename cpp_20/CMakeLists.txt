@@ -5,5 +5,5 @@ set(CMAKE_CXX_STANDARD 20)
 
 find_package(CURL REQUIRED)
 
-add_executable(cpp_20 skeleton_coroutine_generator.cpp)
+add_executable(cpp_20 solution_workshop_3_s_1.cpp)
 target_link_libraries(cpp_20 PRIVATE CURL::libcurl)
