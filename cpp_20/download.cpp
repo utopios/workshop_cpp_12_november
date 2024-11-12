@@ -79,9 +79,9 @@ struct AsyncTask {
     struct promise_type;
     using handle_type = std::coroutine_handle<promise_type>;
 
-    std::shared_ptr<handle_type> coro;
+    std::unique_ptr<handle_type> coro;
 
-    AsyncTask(handle_type h) : coro(std::make_shared<handle_type>(h)) {}
+    AsyncTask(handle_type h) : coro(std::make_unique<handle_type>(h)) {}
     ~AsyncTask() {
         if (coro && coro->done()) coro->destroy();
     }
@@ -130,7 +130,7 @@ int main() {
     for (size_t i = 0; i < urls.size(); ++i) {
         AsyncTask task = download_file_async(urls[i], output_paths[i]);
         task.start();
-        tasks.push_back(std::move(task));
+        //tasks.push_back(std::move(task));
     }
 
 
