@@ -3,23 +3,28 @@
 #include <thread>
 #include <chrono>
 #include <functional>
+#include <future>
 
 // Classe Awaitable pour simuler un délai asynchrone
 class SimpleAwaitable {
+
 public:
+    std::promise<void> promise;
     bool await_ready() const noexcept {
         return false; // Toujours suspendre la coroutine
     }
 
-    void await_suspend(std::coroutine_handle<> handle) const {
+    void await_suspend(std::coroutine_handle<> handle)  {
         // Lancer un thread séparé pour simuler un délai de 1 seconde
-        std::thread([handle]() {
+        std::thread([this,handle]() {
             std::this_thread::sleep_for(std::chrono::seconds(1));
+            promise.set_value();
             handle.resume(); // Reprend la coroutine après le délai
         }).detach();
     }
 
-    int await_resume() const noexcept {
+    int await_resume() noexcept {
+        promise.get_future().wait();
         return 42; // Retourne un résultat fictif
     }
 };
