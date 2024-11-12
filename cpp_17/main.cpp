@@ -135,7 +135,7 @@ void parallelAlgorithmsDemo() {
 
 int main() {
 
-    std::cout << global_var << '\n';
+    /*std::cout << global_var << '\n';
 
     // Demo 1: if constexpr
     checkValue<5>();  // N = 5, so the second branch runs
@@ -164,7 +164,7 @@ int main() {
     demoAny();*/
 
     // Demo 8: Parallel algorithms
-    //parallelAlgorithmsDemo();
+    parallelAlgorithmsDemo();
 
 
 
